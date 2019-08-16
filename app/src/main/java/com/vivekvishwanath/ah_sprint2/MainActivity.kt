@@ -1,7 +1,12 @@
 package com.vivekvishwanath.ah_sprint2
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,8 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         favorites_button.setOnClickListener {
-            val favorites = getFavorites()
-            val i = 0
+            createNotification(getFavorites())
         }
     }
 
@@ -38,5 +42,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         return favoritesString
+    }
+
+    fun createNotification(favorites: String) {
+        val channelId = "${this.packageName}.simplechannel"
+        val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Puppy Notification Channel"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val description = "Channel to send puppy notification"
+
+            val channel = NotificationChannel(channelId, name, importance)
+            channel.description = description
+
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                .setContentTitle("Puppy Notification")
+                .setContentText(favorites)
+                .setAutoCancel(true)
+        notificationManager.notify(60, notificationBuilder.build())
     }
 }
