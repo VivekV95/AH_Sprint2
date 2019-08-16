@@ -5,11 +5,13 @@ import android.os.Bundle
 
 // Step 1: Make the Puppy model
 // Step 2: Process raw puppy data
+// Step 3:
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
     }
 }
