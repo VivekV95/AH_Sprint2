@@ -5,7 +5,8 @@ import android.os.Bundle
 
 // Step 1: Make the Puppy model
 // Step 2: Process raw puppy data
-// Step 3:
+// Step 3: Design RV item layout
+// Step 4:
 
 class MainActivity : AppCompatActivity() {
 
