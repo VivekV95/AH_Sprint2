@@ -65,6 +65,6 @@ class MainActivity : AppCompatActivity() {
                 .setContentTitle("Puppy Notification")
                 .setContentText(favorites)
                 .setAutoCancel(true)
-        notificationManager.notify(60, notificationBuilder.build())
+        notificationManager.notify(1, notificationBuilder.build())
     }
 }

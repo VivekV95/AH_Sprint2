@@ -25,14 +25,7 @@ class PuppyListAdapter(val puppyList: MutableList<Puppy>) : RecyclerView.Adapter
         holder.bindModel(puppy)
 
         holder.puppyItemParent.setOnClickListener {
-            if (puppy.isFavorite) {
-                puppy.isFavorite = false
-                notifyItemChanged(position)
-            } else {
-                puppy.isFavorite = true
-                notifyItemChanged(position)
-            }
-
+            puppy.isFavorite = !puppy.isFavorite
             notifyItemChanged(position)
         }
 
